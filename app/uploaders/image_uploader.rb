@@ -5,7 +5,7 @@
 ######
 
 class ImageUploader < CarrierWave::Uploader::Base
-include ::CarrierWave::Backgrounder::Delay # carrierwave_backgrounder
+# include ::CarrierWave::Backgrounder::Delay # carrierwave_backgrounder
   
   ######
   # include CarrierWave::Delayed::Job # Delayed jobs module.

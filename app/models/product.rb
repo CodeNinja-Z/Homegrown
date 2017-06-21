@@ -10,8 +10,8 @@ class Product < ActiveRecord::Base
 
   # Carrierwave_background and Delayed jobs
   mount_uploader :image, ImageUploader
-  process_in_background :image
-  store_in_background :image
+  # process_in_background :image
+  # store_in_background :image
   
 
 
