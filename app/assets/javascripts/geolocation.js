@@ -1,16 +1,16 @@
-  function Map(mapId){
-    this.mapId = mapId;
-  }
+function Map(mapId){
+  this.mapId = mapId;
+}
 
-  Map.prototype.init = function(latitude, longitude){
-    var options = {
-      center: {lat: latitude, lng: longitude},
-      zoom: 15,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
+Map.prototype.init = function(latitude, longitude){
+  var options = {
+    center: {lat: latitude, lng: longitude},
+    zoom: 15,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
 
-    this.map = new google.maps.Map(this.mapId, options);
-  }
+  this.map = new google.maps.Map(this.mapId, options);
+}
 
 
 $(document).ready(function(){
@@ -21,16 +21,16 @@ $(document).ready(function(){
     window.myMap.init(latitude, longitude);
   }
 
-    updateRangeValue($('input[type=range]'));
-    $('input[type=range]').on('input change',function(){
-      var input = $(this);
-      updateRangeValue(input);
-    });
+  updateRangeValue($('input[type=range]'));
+  $('input[type=range]').on('input change',function(){
+    var input = $(this);
+    updateRangeValue(input);
+  });
 
-    function updateRangeValue(input){
-      var value = input.val();
-      input.next('.rangevalue').html(value + ' kilometers');
-    }
+  function updateRangeValue(input){
+    var value = input.val();
+    input.next('.rangevalue').html(value + ' kilometers');
+  }
 
   $("#garden-location").on("click", function(event) {
       event.preventDefault();
@@ -43,7 +43,7 @@ $(document).ready(function(){
       getLocation();
     });
 
- function geolocationSuccess(position, isLocationDisabled) {
+  function geolocationSuccess(position, isLocationDisabled) {
     if($.cookie('latitude') == undefined && $.cookie('longitude') == undefined ) {
     
       var latitude  = position.coords.latitude;
@@ -51,7 +51,8 @@ $(document).ready(function(){
 
       $.cookie('latitude', latitude);
       $.cookie('longitude', longitude);
-    }else{
+
+    } else{
       var latitude = $.cookie('latitude');
       var longitude = $.cookie('longitude');
     }
@@ -94,7 +95,7 @@ $(document).ready(function(){
       searchvar: $('#search-field').val(),
       proximity: $('#proximity').val(),
       searchFor: $('#search-button').val(),
-      login: $("#login").val(),
+      login: $("#login").val()
     };
     return searchObject;
   };

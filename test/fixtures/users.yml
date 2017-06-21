@@ -5,9 +5,10 @@
 # below each fixture, per the syntax in the comments below
 #
 one: {
-  # email: whatever@whatever.com,
-  # salt: <%= salt = "asdasdastr4325234324sdfds" %>,
-  # crypted_password: <%= Sorcery::CryptoProviders::BCrypt.encrypt("secret", salt) %>
+  name: "Carlos",
+  email: cz@whatever.com,
+  salt: <%= salt = "asdasdastr4325234324sdfds" %>,
+  crypted_password: <%= Sorcery::CryptoProviders::BCrypt.encrypt("secret", salt) %>
 }
 # column: value
 #

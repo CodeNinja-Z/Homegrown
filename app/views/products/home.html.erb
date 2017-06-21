@@ -79,7 +79,6 @@
 // 2. if there IS lat/lng in the cookie cache, then
 // we need to call getProducts() with lat/lng from the cookie cache.
 
-
 function getLocationFromBrowser(){
   if ("geolocation" in navigator) {
     navigator.geolocation.getCurrentPosition(geolocationSuccess);
@@ -88,6 +87,7 @@ function getLocationFromBrowser(){
   }
   setTimeout(getLocationFromBrowser, 1800000);
 }
+
 function geolocationSuccess(position, isLocationDisabled) {
   console.log("In geolocationSuccess!");
 
@@ -102,11 +102,11 @@ function geolocationSuccess(position, isLocationDisabled) {
   getProducts(longitude, latitude);
 }
 
-  function expireCookie(minutes) {
-    var date = new Date();
-    var min = minutes;
-    return date.setTime(date.getTime() + (min * 60 * 1000));
-  }
+function expireCookie(minutes) {
+  var date = new Date();
+  var min = minutes;
+  return date.setTime(date.getTime() + (min * 60 * 1000));
+}
 
 function getProducts(longitude, latitude) {
   $.ajax({
@@ -119,6 +119,7 @@ function getProducts(longitude, latitude) {
     dataType: 'script'
   });
 }
+
 if($.cookie('latitude') == undefined && $.cookie('longitude') == undefined ){
   getLocationFromBrowser();
 } else {

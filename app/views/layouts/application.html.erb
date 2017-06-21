@@ -15,7 +15,7 @@
     <ul class="nav">
       <% if current_user %>
 
-        <li class="nav-link" id="logout">
+        <li class="nav-link medium-screen" id="logout">
             <%= link_to "Sign out", :logout, method: :post %>
         </li>
 
@@ -23,25 +23,32 @@
           <%= link_to 'Profile', user_path(current_user)%>
         </li>
 
-        <li class="nav-button drop-down more" id="user-icon">
-          <i class="fa fa-user"></i>
-          <ul class="submenu">
+        <li class="nav-button drop-down" id="user-icon">
+          <a href="javascript:void(0)"><i class="fa fa-user"></i></a>
+          <ul>
+
             <%= link_to user_path(current_user) do %>
               <li>
                 Profile
               </li>
             <% end %>
-              <% if current_user.garden %>
-                <%= link_to garden_path(current_user.garden) do %>
-                  <li>
-                      Garden
-                  </li>
-                <% end %>
-              <% else %>
+
+            <% if current_user.garden %>
+              <%= link_to garden_path(current_user.garden) do %>
                 <li>
-                  <span class="disabled">Garden</span>
+                  Garden
                 </li>
               <% end %>
+            <% else %>
+              <li>
+                <span class="disabled">Garden</span>
+              </li>
+            <% end %>
+
+            <li class="nav-link" id="logout">
+              <%= link_to "Sign out", :logout, method: :post %>
+            </li>
+
           </ul>
         </li>
 
@@ -85,6 +92,7 @@
         </li>
         <li class="nav-link">
           <%= link_to "Register", new_user_path %>
+          <%# link_to "Register", :new_user %>  <!-- same as above line -->
         </li>
 
       <% end %>

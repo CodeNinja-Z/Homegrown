@@ -3,6 +3,10 @@ class User < ActiveRecord::Base
     config.authentications_class = Authentication
   end
 
+  before_save { self.email = email.downcase }
+  # before_save { self.email = self.email.downcase }  # same as above
+  # We can omit the 2nd self because Rails does this for us.
+
   mount_uploader :image, ImageUploader
   # mount_uploader :image, AssetUploader
   # after_save :enqueue
@@ -20,7 +24,7 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true, if: -> { new_record? || changes["password"] }
 
   validates :email, presence: true
-  validates :email, uniqueness: true
+  validates :email, uniqueness: {case_sensitive: false}
   validates :email, format: { with: /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i,
     message: "not a valid email address" }
   validates :name, presence: true
